@@ -1,0 +1,97 @@
+#div_produit {
+    margin-top: 2vh;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#subdiv-1 {
+    display: flex;
+    justify-content: space-around;
+}
+
+#presentation {
+    border-style: solid;
+    border-color: var(--dark-border);
+    border-width: 1px;
+    border-radius: 1.5vw;
+    background-color: var(--dark-mid-bg);
+    text-align: center;
+    width: 70vw;
+    color: var(--dark-high-text);
+    padding-bottom: 2vh;
+}
+
+#infos {
+    border-style: solid;
+    border-color: var(--dark-border);
+    border-width: 1px;
+    border-radius: 1.5vw;
+    width: 25vw;
+    background-color: var(--dark-mid-bg);
+    padding-left: 2vw;
+    padding-right: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#infos h2 {
+    color: var(--dark-high-text);
+}
+
+#infos p {
+    color: var(--dark-low-text);
+}
+
+#btn-acheter {
+    background-color: var(--dark-high-bg);
+    border-color: var(--primary);
+    height: 4vh;
+    border-style: solid;
+    color: var(--dark-high-text);
+    border-radius: 1.5vw;
+}
+
+#quantity-select {
+    background-color: var(--dark-high-bg);
+    border-color: var(--primary);
+    height: 3vh;
+    border-style: solid;
+    color: var(--dark-high-text);
+    border-radius: 1.5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#btn-acheter:hover {
+    background-color: var(--dark-low-primary);
+}
+
+#vendeur {
+    color: var(--primary);
+}
+
+#date-liv {
+    color: var(--dark-high-text);
+}
+
+#description {
+    border-style: solid;
+    border-color: var(--dark-border);
+    border-width: 1px;
+    border-radius: 1.5vw;
+    background-color: var(--dark-mid-bg);
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-top: 3vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+#description h2 {
+    color: var(--dark-high-text);
+}
+
+#description p {
+    color: var(--dark-low-text);
+}

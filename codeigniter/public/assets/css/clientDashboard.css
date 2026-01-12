@@ -1,0 +1,128 @@
+body {
+    background-color: var(--dark-low-bg);
+    font-family: Arial, sans-serif;
+}
+
+#commandes , #infos {
+    color: var(--dark-low-text);
+    background-color: var(--dark-mid-bg);
+    border-style: solid;
+    border-color: var(--dark-border);
+    border-width: 1px;
+    border-radius: 1.5vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    width: 49vw;
+}
+
+#commandes {
+    margin-left: 1vw;
+    margin-right: 0.5vw;
+}
+
+#infos {
+    margin-left: 0.5vw;
+    margin-right: 1vw;
+}
+
+h1, #commandes h3 {
+    color: var(--dark-high-text);
+}
+
+.details_commande, .details_infos {
+    background-color: var(--dark-high-bg);
+    border-style: solid;
+    border-color: var(--dark-border);
+    border-width: 1px;
+    border-radius: 1.2vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    padding: 1vh 1vw;
+}
+
+.details_infos {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.premiere_ligne {
+    display: flex;
+    justify-content: space-between;
+}
+
+span {
+    color: var(--primary);
+}
+
+h1 {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
+}
+
+.text_input {
+    height: 3.5vh;
+    border-radius: 50px;
+    padding-left: 30px;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    background-color: var(--dark-mid-bg);
+    color: var(--dark-high-text);
+    border: 2px solid var(--dark-border);
+}
+
+#button {
+    background-color: var(--dark-low-bg);
+    color: var(--dark-high-text);
+    border: 1px solid var(--primary);
+    width: 15vw;
+    height: 5vh;
+    font-size: 25px;
+    border-radius: 10px;
+    margin: 2vh auto;
+}
+
+#button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+label {
+    color: var(--dark-high-text);
+}
+
+#content {
+    display: flex;
+}
+
+#error {
+    background-color: #5f0707;
+    color: var(--dark-high-text);
+    border: 1px solid #ee1111;
+    margin: 2vh auto;
+    width: 230px;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    text-align: center;
+}
+
+#done {
+    background-color: #075f07;
+    color: var(--dark-high-text);
+    border: 1px solid #11ff11;
+    margin: 2vh auto;
+    width: 230px;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    text-align: center;
+}

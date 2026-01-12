@@ -1,0 +1,313 @@
+@keyframes carousel-animation {
+    /* Image 1 : 0% à 16.66% (5s) */
+    0% {
+        transform: translateX(0);
+    }
+    16.66% {
+        transform: translateX(0);
+    }
+    /* Transition vers Image 2 : 16.66% à 22.22% (1s) */
+    22.22% {
+        transform: translateX(-33.32%);
+    }
+    /* Image 2 : 22.22% à 38.88% (5s) */
+    38.88% {
+        transform: translateX(-33.32%);
+    }
+    /* Transition vers Image 3 : 38.88% à 44.44% (1s) */
+    44.44% {
+        transform: translateX(-66.7%);
+    }
+    /* Image 3 : 44.44% à 61.11% (5s) */
+    61.11% {
+        transform: translateX(-66.7%);
+    }
+    /* Transition vers Image 2 : 61.11% à 66.66% (1s) */
+    66.66% {
+        transform: translateX(-33.32%);
+    }
+    /* Image 2 : 66.66% à 83.33% (5s) */
+    83.33% {
+        transform: translateX(-33.32%);
+    }
+    /* Transition vers Image 1 : 83.33% à 88.88% (1s) */
+    88.88% {
+        transform: translateX(0);
+    }
+    /* Image 1 : 88.88% à 100% (5s) */
+    100% {
+        transform: translateX(0);
+    }
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    color: var(--dark-high-text);
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-color: var(--dark-low-bg);
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: var(--dark-low-bg);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border: 2px solid var(--dark-border);
+    padding-bottom: 10px;
+    width: 100%;
+    z-index: 100;
+}
+
+.carousel {
+    margin-top: 20px;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden; /* ← Très important ! */
+}
+.carousel-slide {
+    width: 300%;
+    display: flex;
+    animation: carousel-animation 35s infinite ;
+}
+.carousel-slide img {
+    width: calc(100%/3);
+    height: 50%;
+    object-fit: cover;
+}
+
+.box1_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    padding: 0 20px;
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    max-height: 60px;
+    max-width: 200px;
+    border-radius: 15px;
+}
+
+.categories {
+    height: 40px;
+    width: 150px;
+    border-radius: 10px;
+    padding: 0 15px;
+    font-size: 16px;
+    background-color: var(--dark-mid-bg);
+    color: var(--dark-high-text);
+    border: 2px solid #11A1EE;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.display-categories {
+    position: relative;
+}
+
+.box1_header ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 150px;
+    z-index: 1000;
+}
+
+.box1_header ul > li {
+    background-color: var(--dark-mid-bg);
+    color: var(--dark-high-text);
+    height: 40px;
+    width: 100%;
+    padding: 10px 0 0 10px;
+    border: 1px solid var(--dark-high-text);
+    font-size: 16px;
+}
+
+.display-categories:hover .categories {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.display-categories:hover ul {
+    display: block;
+}
+
+.last-li {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#search-form {
+    width:25vw;
+}
+
+.searchbar {
+    height: 40px;
+    border-radius: 50px;
+    width: 100%;
+    max-width: 600px;
+    padding-left: 30px;
+    margin: 0;
+    background-color: var(--dark-mid-bg);
+    color: var(--dark-low-text);
+    border: 2px solid var(--dark-border);
+}
+
+.searchbar:focus {
+    outline: none;
+}
+
+.bouttons {
+    display: flex;
+    gap: 10px;
+}
+
+.bouttons h3 {
+    color: var(--dark-high-text);
+}
+
+.btn-type-1-inscription, .btn-type-1 {
+    height: 50px;
+    width: 120px;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: var(--dark-mid-bg);
+    color: var(--dark-high-text);
+    border: 2px solid var(--dark-border);
+}
+
+.btn-type-1-inscription {
+    background-color: var(--dark-low-primary);
+}
+
+
+
+
+
+.footer{
+    width: 100%;
+    margin-top: -5px;
+    padding: 0;
+    background-color: var(--dark-low-primary);
+    color: white;
+}
+
+.footergrossebox{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* 👈 permet la superposition */
+}
+
+
+.footerbox ul {
+    padding:20px 0 0 40px; 
+}
+.footerbox ul li {
+    padding:10px 0 0 0;
+}
+.line{
+    display: flex;
+    justify-content: center;
+    margin:40px 0 0 0;
+}
+.line-credits{
+    display: flex;
+    justify-content: center;
+    margin:40px 0 0 0;
+    padding-bottom: 15px;
+}
+
+/* Mode tablette/mobile (switch avant que la barre ne devienne trop petite) */
+@media (max-width: 900px) {
+    .box1_header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+    .logo-container {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    .searchbar {
+        width: 100%;
+        order: 3;
+        margin-top: 10px;
+    }
+    .bouttons {
+        width: 100%;
+        justify-content: center;
+        order: 2;
+        margin-bottom: 10px;
+    }
+    .btn-type-1-inscription, .btn-type-1 {
+        width: 48%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .footergrossebox {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footerbox {
+        width: 100%;
+        max-width: 400px;
+        margin-bottom: 30px;
+    }
+
+    .footerbox ul {
+        padding: 10px 0 0 0;
+    }
+}
+
+
+/* Très petits écrans (alignement symétrique) */
+@media (max-width: 600px) {
+    .box1_header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .bouttons {
+        margin-top: 10px;
+    }
+    .searchbar {
+        margin-top: 10px;
+        width: 350px;
+        margin-left: -120px;
+    }
+}

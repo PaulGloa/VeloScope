@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/couleurs.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/modif_prod.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/btn-profil.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/credits.css'); ?>">
+    <title>Document</title>
+</head>
+<body>
+       <nav class="navbar">
+            <div class="box1_header">
+                <a href="<?php echo base_url('public'); ?>">
+                    <img class="logo" src="<?php echo base_url('public/assets/img/logo.jpg');?>">
+                </a>
+                <div class="display-categories">
+                    <form action="<?php echo base_url('public/Home/recherche'); ?>" method="post">
+                        <input type="submit" id="submit-button" style="display: none;">
+                    </form>
+                </div>
+                <form id="search-form" action="<?php echo base_url('public/Home/recherche'); ?>" method="post">
+                    <?php if (session()->get('keyword') != NULL) :?>
+                        <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" value="<?=session()->get('keyword')?>">
+                    <?php else :?>
+                        <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" >
+                    <?php endif; ?>
+                </form>    
+
+                <div class="bouttons">
+                    <?php if (session()->get('nom') == null) :?>
+                        <button class="btn-type-1-inscription"><a href="<?php echo base_url('public/Inscription'); ?>">Inscription</a></button>
+                        <button class="btn-type-1"><a href="<?php echo base_url('public/Connexion'); ?>">Connexion</a></button>
+                    <?php elseif (session()->get('role') == 'client') : ?>
+                        <div class="profil-container">
+                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
+                            <div id="options" class="options">
+                                <h2><img src="<?php echo base_url('public/assets/img/profil.jpg') ; ?>" class="img-profil"> Mon Profil</h2>
+                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
+                                <p class="pline">____________________________</p>
+                                <a href="<?php echo base_url('public/Connexion'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button></a>
+                                <p class="pline">____________________________</p>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Consulter ses commandes</button>
+                                <p class="pline">____________________________</p>
+                                <form action="<?= base_url('public/Dashboard/devenirVendeur')?>" method="post">
+                                    <button class="line-red"><img src="<?php echo base_url('public/assets/img/vendeur.png') ; ?>" class="img-profil"> Devenir vendeur</button>
+                                </form>
+                                    <p class="pline">____________________________</p>
+                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>
+                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/poubelle.png') ; ?>" class="img-profil"> Supprimer son profil</button>
+                                <p class="pline">____________________________</p>
+                            </div>
+                        </div>
+                        <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
+                   <?php elseif (session()->get('role') == 'vendeur') : ?>
+                        <div class="profil-container">
+                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
+                            <div id="options" class="options-vendeur">
+                                <h2><img src="<?php echo base_url('public/assets/img/profil.jpg') ; ?>" class="img-profil"> Mon Profil</h2>
+                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
+                                <p class="pline">____________________________</p>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button>
+                                <p class="pline">____________________________</p>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Consulter ses commandes</button>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Consulter les commandes</button>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Consulter ses produits</button>
+                                <a href="<?= base_url('public/Connexion') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Ajouter produits</button></a>
+                                <p class="pline">____________________________</p>
+                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>
+                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/poubelle.png') ; ?>" class="img-profil"> Supprimer son profil</button>
+                                <p class="pline">____________________________</p>
+                            </div>
+                        </div>
+                        <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
+                   <?php elseif (session()->get('role') == 'moderateur') : ?>
+                        <div class="profil-container">
+                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
+                            <div id="options" class="options-modo">
+                                <h2><img src="<?php echo base_url('public/assets/img/profil.jpg') ; ?>" class="img-profil"> Mon Profil</h2>
+                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
+                                <p class="pline">____________________________</p>
+                                <a href="<?= base_url('public/Connexion') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button></a>
+                                <p class="pline">____________________________</p>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Consulter ses commandes</button>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Consulter les commandes</button>
+                                <a href="<?= base_url('public/Connexion') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Consulter les produits</button></a>
+                                <a href="<?= base_url('public/Connexion') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Ajouter produits</button></a>
+                                <p class="pline">____________________________</p>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/modo.png') ; ?>" class="img-profil"> Consulter liste users</button>
+                                <p class="pline">____________________________</p>
+                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>
+                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/poubelle.png') ; ?>" class="img-profil"> Supprimer son profil</button>
+                                <p class="pline">____________________________</p>
+                            </div>
+                        </div>
+                        <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
+                    <?php endif;?>
+                </div>
+            </div>
+    </nav>
+    <div class="main-content">
+        <div class="sommaire-box">
+            <h2 class="sommaire-title">Sommaire</h2>
+            <a href="#1"><h3>Qui sommes nous ?</h3></a>
+            <ul>
+                <a href="#2"><li>Notre mission</li></a>
+                <a href="#3"><li>Une marketplace collaborative</li></a>
+                <a href="#4"><li>Un cadre sécurisé</li></a>
+                <a href="#5"><li>Une passion commune</li></a>
+            </ul>
+            <a href="#6"><h3>Informations légales</h3></a>
+            <ul>
+                <a href="#7"><li>Mentions légales</li></a>
+                <ul>
+                    <a href="#8"><li>Éditeur du site</li></a>
+                    <a href="#9"><li>Immatriculation</li></a>
+                    <a href="#10"><li>Directeur de publication</li></a>
+                    <a href="#11"><li>Hébergement</li></a>
+                </ul>
+                <a href="#12"><li>Conditions Générales de Vente (CGV)</li></a>
+                <ul>
+                    <a href="#13"><li>Fonctionnement de la marketplace</li></a>
+                    <a href="#14"><li>Produits</li></a>
+                    <a href="#15"><li>Prix</li></a>
+                    <a href="#16"><li>Commande</li></a>
+                    <a href="#17"><li>Paiement</li></a>
+                    <a href="#18"><li>Droit de rétractation</li></a>
+                </ul>
+                <a href="#19"><li>Conditions Générales d’Utilisation (CGU)</li></a>
+                <ul>
+                    <a href="#20"><li>Accès au site</li></a>
+                    <a href="#21"><li>Comptes utilisateurs</li></a>
+                    <a href="#22"><li>Obligations des vendeurs</li></a>
+                    <a href="#23"><li>Utilisations interdites</li></a>
+                </ul>
+                <a href="#24"><li>Politique de confidentialité</li></a>
+                <ul>
+                    <a href="#25"><li>Données collectées</li></a>
+                    <a href="#26"><li>Utilisation des données</li></a>
+                    <a href="#27"><li>Droits des utilisateurs</li></a>
+                </ul>
+                <a href="#28"><li>Politique de cookies</li></a>
+                <ul>
+                    <a href="#29"><li>Types de cookies utilisés</li></a>
+                    <a href="#30"><li>Gestion des cookies</li></a>
+                </ul>
+            </ul>
+            <a href="#31"><h3>Achats & services</h3></a>
+            <ul>
+                <a href="#32"><li>Livraison et retours</li></a>
+                <a href="#33"><li>Service après-vente & garanties</li></a>
+                <ul><a href="#34"><li>Garanties légales</li></a>
+                    <a href="#35"><li>Service après-vente</li></a>
+                </ul>
+                <a href="#36"><li>Responsabilité et sécurité</li></a>
+                <ul>
+                    <a href="#37"><li>Utilisation des produits</li></a>
+                    <a href="#38"><li>Sécurité</li></a>
+                    <a href="#39"><li>Responsabilité</li></a>
+                </ul>
+            </ul>
+
+        </div>
+        <div class="legal-box">
+            <h1>Véloscope</h1>
+            <h1 id="1">Qui sommes-nous ?</h2>
+            <p>
+                Veloscope est une plateforme en ligne fictive dédiée à l’univers du vélo sous toutes ses formes.
+                Notre objectif est de mettre en relation des vendeurs passionnés (professionnels et particuliers) avec des acheteurs à la recherche de vélos, d’accessoires et de pièces de qualité.
+                Créé dans le cadre d’un projet pédagogique, Veloscope simule le fonctionnement d’une marketplace moderne, simple et sécurisée, pensée pour répondre aux besoins des cyclistes d’aujourd’hui.
+            </p>
+
+            <h2 id="2">Notre mission</h2>
+            <p>Veloscope a pour mission de :</p>
+            <ul>
+                <li>Faciliter l’achat et la vente de produits liés au vélo</li>
+                <li>Offrir une plateforme claire, fiable et accessible</li>
+                <li>Valoriser la diversité des vendeurs et des offres</li>
+                <li>Encourager l’usage du vélo comme moyen de transport durable</li>
+            </ul>
+            <h2 id="3">Une marketplace collaborative</h2>
+            <p>Contrairement à une boutique classique, Veloscope fonctionne comme une place de marché :</p>
+            <ul>
+                <li>Plusieurs vendeurs indépendants peuvent proposer leurs produits</li>
+                <li>Chaque vendeur gère ses annonces, ses prix et ses conditions</li>
+                <li>Veloscope agit comme intermédiaire technique et sécurisé</li>
+            </ul>
+            <p>Ce modèle permet aux utilisateurs d’accéder à une large variété de produits, neufs ou d’occasion, sur une seule et même plateforme.</p>
+            <h2 id="4">Un cadre sécurisé</h2>
+            <p>Même dans un contexte fictif, Veloscope met en avant :</p>
+            <ul>
+                <li>Des paiements sécurisés</li>
+                <li>Le respect des règles de vente en ligne</li>
+                <li>La protection des données personnelles</li>
+                <li>L’accompagnement des utilisateurs en cas de problème</li>
+            </ul>
+            <h2 id="5">Une passion commune</h2>
+            <p>Veloscope est avant tout un projet imaginé par des passionnés de technologie et de cyclisme.
+            Nous croyons que le vélo est plus qu’un simple moyen de transport :
+            c’est un choix écologique, économique et bénéfique pour la santé.</p>
+
+            <h1 id="6">Informations légales</h1>
+            <h2 id="7">Mentions légales</h2>
+            <ul>
+                <li><h3 id="8">Éditeur du site</h3>
+                    <p>Nom du site : Veloscope</p>
+                    <p>Société exploitante : Veloscope SAS</p>
+                    <p>Capital social : 20 000 €</p>
+                    <p>Siège social : 3 rue Maréchal Joffre, 44000, France</p>
+                    <p>Téléphone : 06 70 85 74 77</p>
+                    <p>Email : contact@veloscope.fr A CHANGER</p>
+                </li>
+                <li><h3 id="9">Immatriculation</h3>
+                    <p>SIRET : 987 654 321 00000</p>
+                    <p>TVA intracommunautaire : FR98 7654321</p>
+                </li>
+                <li><h3 id="10">Directeur de publication</h3>
+                    <p>Monsieur Artus Hébert</p>
+                </li>
+                <li><h3 id="11">Hébergement</h3>
+                    <p>Hébergeur : WebHost France</p>
+                    <p>Adresse : 10 rue des Serveurs, 75000 Paris, France</p>
+                </li>
+            </ul>
+            <h2 id="12">Conditions Générales de Vente (CGV)</h2>
+            <p>Les présentes Conditions Générales de Vente s’appliquent à toutes les commandes effectuées sur le site Veloscope.</p>
+            <ul>
+                <li><h3 id="13">Fonctionnement de la marketplace</h3>
+                    <p>Veloscope est une plateforme de mise en relation entre acheteurs et vendeurs indépendants (professionnels ou particuliers).
+                    Chaque vendeur est responsable des produits qu’il propose, de leur description, de leur conformité et de leur livraison.</p>
+                </li>
+                <li><h3 id="14">Produits</h3>
+                    <p>Les vendeurs proposent notamment : Vélos (urbains, VTT, électriques, route)</p>
+                </li>
+                <li><h3 id="15">Prix</h3><p>Les prix sont affichés en euros (€), toutes taxes comprises (TTC).
+                Chaque vendeur fixe librement ses prix.</p></li>
+                <li><h3 id="16">Commande</h3><p>Toute commande implique l’acceptation des présentes CGV ainsi que des conditions spécifiques du vendeur concerné.</p></li>
+                <li><h3 id="17">Paiement</h3><p>Les paiements sont effectués via la plateforme Veloscope, qui agit comme intermédiaire sécurisé.</p></li>
+                <li><h3 id="18">Droit de rétractation</h3><p>Conformément à la loi, l’acheteur dispose d’un délai de 14 jours pour se rétracter, sauf exceptions légales.
+                Les modalités de retour peuvent varier selon le vendeur.</p></li>
+            </ul>
+            <h2 id="19">Conditions Générales d’Utilisation (CGU)</h2>
+            <p>Les présentes CGU encadrent l’utilisation du site Veloscope, tant pour les acheteurs que pour les vendeurs.</p>
+            <ul>
+                <li><h3 id="20">Accès au site</h3><p>Le site est accessible gratuitement à tout utilisateur disposant d’une connexion Internet.</p></li>
+                <li><h3 id="21">Comptes utilisateurs</h3>
+                    <ul>
+                        <li>Les acheteurs peuvent créer un compte pour passer commande</li>
+                        <li>Les vendeurs disposent d’un espace dédié pour publier leurs annonces</li>
+                    </ul>
+                    <p>Chaque utilisateur est responsable des informations fournies.</p>
+                </li>
+                <li><h3 id="22">Obligations des vendeurs</h3><p>Les vendeurs s’engagent à :</p><ul>
+                    <li>Fournir des descriptions exactes</li>
+                    <li>Respecter la législation en vigueur</li>
+                    <li>Honorer les commandes et garanties légales</li>
+
+                </ul></li>
+                <li><h3 id="23">Utilisations interdites</h3><p>Toute fraude, usurpation d’identité ou tentative de nuire au bon fonctionnement du site est strictement interdite.</p></li>
+            </ul>
+            <h2 id="24">Politique de confidentialité</h2>
+            <p>Veloscope respecte la vie privée de ses utilisateurs et s’engage à protéger leurs données personnelles.</p>
+            <h2 id="25">Données collectées</h2>
+            <ul>
+                <li>Nom, prénom</li>
+                <li>Adresse email</li>
+                <li>Historique de commandes</li>
+                <li>Informations liées au compte vendeur (le cas échéant)</li>
+            </ul>
+            <h2 id="26">Utilisation des données</h2>
+            <p>Les données sont utilisées pour :</p>
+            <ul>
+                <li>La gestion des commandes</li>
+                <li>La mise en relation acheteurs / vendeurs</li>
+                <li>Le service client</li>
+                <li>L’amélioration de la plateforme</li>
+            </ul>
+            <h2 id="27">Droits des utilisateurs</h2>
+            <p>Conformément au RGPD, chaque utilisateur dispose d’un droit d’accès, de modification et de suppression de ses données.</p>
+            <h2 id="28">Politique de cookies</h2>
+            <p>Veloscope utilise des cookies afin d’assurer le bon fonctionnement du site et d’améliorer l’expérience utilisateur.</p>
+            <h2 id="29">Types de cookies utilisés</h2>
+            <ul><li>Cookies essentiels</li><li>Cookies de statistiques anonymes</li></ul>
+            <h2 id="30">Gestion des cookies</h2>
+            <p>L’utilisateur peut gérer ses préférences via le bandeau cookies ou les paramètres de son navigateur.</p>
+            <h1 id="31">Achats & services</h1>
+            <h2 id="32">Livraison et retours</h2>
+            <h3>Livraison</h3>
+            <p>Les modalités de livraison (délais, frais, transporteurs) sont définies par chaque vendeur et précisées avant la validation de la commande.</p>
+            <h3>Retours</h3>
+            <p>Les conditions de retour peuvent varier selon le vendeur, dans le respect du droit de rétractation légal de 14 jours.</p>
+            <h2 id="33">Service après-vente & garanties</h2>
+            <ul><li><h3 id="34">Garanties légales</h3><p>Tous les produits vendus sur Veloscope bénéficient :</p><ul><li>De la garantie légale de conformité (2 ans)</li><li>De la garantie contre les vices cachés</li></ul><p>Le vendeur est responsable de l’application de ces garanties.</p></li>
+            <h3 id="35">Service après-vente</h3><p>Le service client Veloscope accompagne les utilisateurs en cas de litige ou de difficulté avec un vendeur.</p>
+            </ul>
+            <h2 id="36">Responsabilité et sécurité</h2>
+            <ul><li><h3 id="37">Utilisation des produits</h3><p>Les vélos doivent être utilisés conformément à leur destination et aux recommandations du vendeur.</p></li>
+                <li><h3 id="38">Sécurité</h3><ul><li>Le port du casque est fortement recommandé</li><li>L’entretien régulier du vélo est indispensable</li></ul></li>
+                <li><h3 id="39">Responsabilité</h3><p>Veloscope agit en tant qu’intermédiaire et ne saurait être tenu responsable des dommages résultant d’une mauvaise utilisation des produits ou d’un manquement du vendeur.</p></li>
+            </ul>
+        </div>
+    </div>
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#07405F" fill-opacity="1" d="M0,224L21.8,218.7C43.6,213,87,203,131,181.3C174.5,160,218,128,262,133.3C305.5,139,349,181,393,202.7C436.4,224,480,224,524,218.7C567.3,213,611,203,655,213.3C698.2,224,742,256,785,240C829.1,224,873,160,916,144C960,128,1004,160,1047,165.3C1090.9,171,1135,149,1178,133.3C1221.8,117,1265,107,1309,112C1352.7,117,1396,139,1418,149.3L1440,160L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z"></path></svg>
+    <footer class="footer">
+        <div class="footergrossebox">
+            <div class="footerbox">
+                <h1>Pour mieux nous connaître</h1>
+                <ul>
+                    <a href="<?= base_url('public/Connexion'); ?>#1"><li>Qui sommes-nous ?</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#2"><li>Notre mission</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#3"><li>Une marketplace collaborative</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#4"><li>Un cadre sécurisé</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#5"><li>Une passion commune</li></a>
+                </ul>
+            </div>
+            <div class="footerbox">
+                <h1>Informations légales</h1>
+                <ul>
+                    <a href="<?= base_url('public/Connexion'); ?>#7"><li>Mentions légales</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#12"><li>Conditions Générales de Vente (CGV)</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#19"><li>Conditions Générales d’Utilisation (CGU)</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#24"><li>Politique de confidentialité</li></a>
+                    <a href="<?= base_url('public/Connexion'); ?>#28"><li>Politique de cookies</li></a>
+                </ul>
+            </div>
+            <div class="footerbox">
+                <h1>Achats & services</h1>
+                <ul>
+                    <a href="#32"><li>Livraison et retours</li></a>
+                    <a href="#33"><li>Service après-vente & garanties</li></a>
+                    <a href="#36"><li>Responsabilité et sécurité</li></a>
+                </ul>
+            </div>
+        </div>
+        <p class="line-credits">© 2024-2026, VéloScope.com Inc. ou ses affiliés</p>
+    </footer>
+    <script src="<?php echo base_url('public/assets/js/test.js'); ?>"></script>
+</body>
+</html>

@@ -1,0 +1,192 @@
+* {
+    box-sizing: border-box;
+}
+
+ul {
+    list-style: none;
+}
+
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 20px;
+}
+
+.connexion-card{
+    background-color: #0D0D0D;
+    color: #F2F2F2;
+    max-width: 800px;
+    height: 900px;
+    border:1px solid #666666;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center
+}
+
+
+.logo{
+    max-height: 80px;
+    max-width: 300px;
+    margin-top: 50px;
+    border-radius: 15px;
+}
+
+.title{
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+    margin-top: 50px;
+    margin-bottom: 40px;
+    font-size: 35px ;
+}
+
+
+
+.str-type1{
+    margin: 50px 0 15px 70px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+.str-type2{
+    margin: 50px 0 15px 70px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+
+
+.info-btn{
+    height: 40px;
+    border-radius: 50px;
+    width: 400px;
+    padding-left: 30px;
+    margin: 0 60px 0 60px;
+    background-color: var(--dark-high-bg);
+    color: var(--dark-low-text);
+    border: 2px solid var(--dark-border);
+}
+
+
+
+.piti-txt1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    margin-top: 80px;
+}
+.piti-txt2{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+
+
+.click-here{
+    color: rgb(51, 162, 253);
+}
+
+.seconnecter{
+    background-color: black;
+    color: #F2F2F2;
+    border: 1px solid #11A1EE;
+    margin-top: 20px;
+    width: 230px;
+    height: 65px;
+    font-size: 25px;
+    border-radius: 10px;
+}
+
+.seconnecter:hover{
+    cursor: pointer;
+    opacity: 0.6;
+
+}
+
+
+/* Inscription */
+.connexion-card2{
+    background-color: #0D0D0D;
+    color: #F2F2F2;
+    max-width: 800px;
+    height: 920px;
+    border:1px solid #666666;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center
+}
+
+.title2{
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;   
+    font-size: 35px ;
+}
+
+
+.title-name{
+    display: flex;
+    margin-top: -35px;
+}
+.infos-name{
+    display: flex;
+    margin-bottom: 0px;
+}
+.mail-text{
+    margin-bottom:15px; 
+}
+
+.confirm{
+    margin-top: -25px;
+}
+
+
+
+.str-type3{
+    margin: 50px 0 15px 0;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    margin-left: 50px;
+    margin-right: 130px;
+
+
+}
+
+
+.info-btn2{
+    height: 40px;
+    border-radius: 50px;
+    width: 190px;
+    padding-left: 30px;
+    margin: 0 10px 0 10px;
+    background-color: #1A1A1A;
+    color: #B3B3B3;
+    border: 2px solid #666666;
+}
+
+.piti-txt3{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 15px;
+    margin-top: 60px;
+}
+
+#error {
+    background-color: #5f0707;
+    color: var(--dark-high-text);
+    border: 1px solid #ee1111;
+    margin: 2vh auto;
+    width: 230px;
+    border-radius: 10px;
+    padding-top: 0.5vh;
+    padding-bottom: 0.5vh;
+    text-align: center;
+}
+
+
+

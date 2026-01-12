@@ -1,0 +1,36 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2vh;
+}
+
+#achat-produit{
+    color: var(--dark-high-text);
+    background-color: var(--dark-mid-bg);
+    border-style: solid;
+    border-color: var(--dark-border);
+    border-width: 1px;
+    border-radius: 1.5vw;
+    padding-top: 1.5vh;
+    margin-top: 5vh;
+    width: 20vw;
+    height: 15vh;
+    text-align: center;
+}
+
+#button {
+    background-color: var(--dark-low-bg);
+    color: var(--dark-high-text);
+    border: 1px solid var(--primary);
+    width: 15vw;
+    height: 5vh;
+    font-size: 25px;
+    border-radius: 10px;
+    margin: 2vh auto;
+}
+
+#button:hover {
+    cursor: pointer;
+    opacity: 0.6;
+}

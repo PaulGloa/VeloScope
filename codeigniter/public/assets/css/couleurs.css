@@ -1,0 +1,17 @@
+:root {
+    --dark-low-bg: #000000;
+    --dark-mid-bg: #0D0D0D;
+    --dark-high-bg: #1A1A1A;
+    --dark-border: #666666;
+    --dark-low-text: #B3B3B3;
+    --dark-high-text: #F2F2F2;
+    --dark-low-primary: #07405F;
+    --primary: #11A1EE;
+    --light-low-bg: #E6E6E6;
+    --light-mid-bg: #F2F2F2;
+    --light-high-bg: #FFFFFF;
+    --light-border: #999999;
+    --light-low-text: #4D4D4D;
+    --light-high-text: #0D0D0D;
+    --light-low-primary: #A0D9F8;
+}
