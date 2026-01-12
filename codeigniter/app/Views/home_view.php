@@ -70,8 +70,8 @@
                                 <a href="<?php echo base_url('public/ModifInfos'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button></a>
                                 <p class="pline">____________________________</p>
                                 <a href="<?php echo base_url('public/MesCommandes'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Commandes</button></a>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Ventes</button>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Consulter ses produits</button>
+                                <a href="<?php echo base_url('public/MesVentes'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Ventes</button></a>
+                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Mon Magasin</button>
                                 <a href="<?= base_url('public/AjouterProd') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Ajouter produits</button></a>
                                 <p class="pline">____________________________</p>
                                 <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>

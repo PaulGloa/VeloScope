@@ -13,6 +13,7 @@ class MesCommandes extends BaseController
         $userId = session('id');
 
         $data['commandes'] = $this->getCommandes($userId);
+        $data['mode'] = 'client';
 
         return view('gerer_commande_view', $data);
     }

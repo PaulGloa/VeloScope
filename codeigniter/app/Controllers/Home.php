@@ -20,7 +20,7 @@ class Home extends BaseController
             $data['products'] = $products;
         }
 
-        $data['categories'] = $this->getCategories();
+        $data['categories'] = $productModel->getCategories();
         $data['session'] = $session;
         return view('home_view', $data);
     }
@@ -77,22 +77,6 @@ class Home extends BaseController
         return $this->index($products);
     }
 
-    function getCategories() {
-        $productModel = new DbProductModel();
-
-        $data['products'] = $productModel->findAll();
-        $categories = [];
-
-        foreach ($data['products'] as $prod) {
-            if (!in_array($prod->categorie, $categories)) {
-                $categories[] = $prod->categorie;
-            }
-        }
-
-        return $categories;
-    }
-
-    // pour l'instant c'est cette fonction mais pour le tri on pourrait utiliser un design pattern
     function comp($a, $b, $tri) {
         switch ($tri) {
             case 'croissant':

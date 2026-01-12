@@ -32,6 +32,7 @@ class Product extends BaseController {
         $data['data'] = $productModel->findAll();
         $product = $productModel->find($id);
         $data['product'] = $product;
+        $data['categories'] = $productModel->getCategories();
 
         $commande = new CommandeEntity();
 

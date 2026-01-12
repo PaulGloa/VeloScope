@@ -27,4 +27,17 @@ class DbProductModel extends Model
             ->orLike('categorie', $keyword)
             ->findAll();
     }
+
+    function getCategories() {
+        $data['products'] = $this->findAll();
+        $categories = [];
+
+        foreach ($data['products'] as $prod) {
+            if (!in_array($prod->categorie, $categories)) {
+                $categories[] = $prod->categorie;
+            }
+        }
+
+        return $categories;
+    }
 }

@@ -105,8 +105,13 @@
                 <div class="text-box3">
                     <h1>Numéro Commande:</h1>
                     <h2 class="petit-txtbox3"><?=$commande['commande']->id?></h2>
-                    <h1 class="petit-txtbox">Vendeur :</h1>
-                    <h2 class="petit-txtbox2"><?=$commande['vendeur']->prenom?> <?=$commande['vendeur']->nom?></h2>
+                    <?php if ($mode == 'client') : ?>
+                        <h1 class="petit-txtbox">Vendeur :</h1>
+                        <h2 class="petit-txtbox2"><?=$commande['vendeur']->prenom?> <?=$commande['vendeur']->nom?></h2>
+                    <?php else : ?>
+                        <h1 class="petit-txtbox">Client :</h1>
+                        <h2 class="petit-txtbox2"><?=$commande['client']->prenom?> <?=$commande['client']->nom?></h2>
+                    <?php endif; ?>
                     <h1 class="petit-txtbox">Etat :</h1>
                     <h2 class="petit-txtbox2">Livré/En cours</h2>
                 </div>
