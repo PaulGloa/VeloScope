@@ -55,7 +55,9 @@ ul {
 }
 
 body {
-    background-color: var(--dark-low-bg);
+    background-image: url('../img/blackwall.jpg');
+    background-repeat: repeat;
+    background-attachment: scroll;
     font-family: Arial, sans-serif;
 }
 
@@ -268,7 +270,7 @@ body {
         margin-bottom: 10px;
     }
     .btn-type-1-inscription, .btn-type-1 {
-        width: 48%;
+        width: 100%;
     }
 }
 

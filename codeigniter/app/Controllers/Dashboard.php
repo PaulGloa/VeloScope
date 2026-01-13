@@ -14,7 +14,7 @@ class Dashboard extends BaseController
         
         if (!isset($role)) {
 
-            return redirect()->to(base_url('public/Home'));
+            return redirect()->to(base_url('Home'));
 
         } elseif ($role == 'vendeur') {
 
@@ -64,17 +64,5 @@ class Dashboard extends BaseController
         session()->set('role', $user->role);
 
         return $this->index();
-    }
-
-    function delete($id) {
-        $dbProductModel = new DbProductModel();
-        $dbProductModel->delete($id);
-
-        $imagePath = FCPATH . 'assets/imageProduit/' . $id . '.jpg';
-        if (file_exists($imagePath)) {
-            unlink($imagePath);
-        }
-
-        return redirect()->to(base_url('public/Dashboard'));
     }
 }

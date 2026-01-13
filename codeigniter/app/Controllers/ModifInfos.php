@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\DbUserModel;
+use App\Models\DbProductModel;
 use CodeIgniter\Database\Exceptions\DataException;
 
 class ModifInfos extends BaseController
@@ -10,9 +11,12 @@ class ModifInfos extends BaseController
     function index($error = null) {
 
         $dbUser = new DbUserModel();
+        $dbProduct = new DbProductModel();
+
         $id = session()->get('id');
         $user = $dbUser->find($id);
 
+        $data['categories'] = $dbProduct->getCategories();
         $data['user'] = $user;
         $data['error'] = $error;
 
@@ -29,7 +33,7 @@ class ModifInfos extends BaseController
         $confirm_mdp = $_POST['confirm_mdp'];
 
         if ($nv_mail == "" || $nom == "" || $prenom == "") {
-            return redirect()->to(base_url('public/ModfiInfos/incomplet'));
+            return redirect()->to(base_url('ModfiInfos/incomplet'));
         }
 
         $dbUser = new DbUserModel();
@@ -42,9 +46,9 @@ class ModifInfos extends BaseController
         if ($nv_mdp != null) {
 
             if ($ancien_mdp != $user->mdp) {
-                return redirect()->to(base_url('public/ModfiInfos/mdp'));
+                return redirect()->to(base_url('ModfiInfos/mdp'));
             } else if ($nv_mdp != $confirm_mdp) {
-                return redirect()->to(base_url('public/ModfiInfos/confirm'));
+                return redirect()->to(base_url('ModfiInfos/confirm'));
             } else {
                 $user->mdp = $nv_mdp;
             }
@@ -60,6 +64,6 @@ class ModifInfos extends BaseController
         session()->set('mail', $user->mail);
         session()->set('role', $user->role);
 
-        return redirect()->to(base_url('public/ModifInfos/index/ok'));
+        return redirect()->to(base_url('ModifInfos/index/ok'));
     }
 }

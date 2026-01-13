@@ -148,7 +148,8 @@
     border-bottom: 10px solid white;
 }
 
-/* Bord du triangle */
+/* Bord du triangle in-top: -100px;
+    height: 520px;*/
 .options-modo::after {
     content: "";
     position: absolute;

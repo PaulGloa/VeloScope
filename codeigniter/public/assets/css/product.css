@@ -95,3 +95,18 @@
 #description p {
     color: var(--dark-low-text);
 }
+
+div.mainImg {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+img.mainImg {
+    border-radius: 50px;
+    object-fit: contain;
+    width: 100%;
+    display: block;
+    margin: 1rem auto;
+    padding: 2rem;
+}

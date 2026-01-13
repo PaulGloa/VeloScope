@@ -63,7 +63,7 @@ class Inscription extends BaseController
 
             $session->set('id', $user->id);
 
-            return redirect()->to(base_url('public'));
+            return redirect()->to(base_url('/'));
         }
     }
 

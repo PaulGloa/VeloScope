@@ -73,7 +73,7 @@ class ModifProduit extends BaseController
             imagedestroy($src);
         }
 
-        return redirect()->to(base_url('public/Dashboard'));
+        return redirect()->to(base_url('public/MonMagasin'));
     }
 }
 

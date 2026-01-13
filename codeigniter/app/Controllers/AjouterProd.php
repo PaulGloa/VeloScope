@@ -8,7 +8,10 @@ class AjouterProd extends BaseController
 {
     function index($error = null) {
 
+        $dbProduct = new DbProductModel();
+
         $data['error'] = $error;
+        $data['categories'] = $dbProduct->getCategories();
 
         return view('ajout_prod_view', $data);
     }
@@ -32,7 +35,7 @@ class AjouterProd extends BaseController
             session()->set('categorie', $categorie);
             session()->set('desc', $desc);
 
-            return redirect()->to(base_url('public/AjouterProd/index/ajout_incomplet')); // ici modif
+            return redirect()->to(base_url('AjouterProd/index/ajout_incomplet')); // ici modif
         }
 
         session()->remove(['nom_produit', 'prix', 'stock','categorie', 'desc']);
@@ -95,6 +98,6 @@ class AjouterProd extends BaseController
         imagejpeg($src, $path . $productId . '.jpg', 85);
         imagedestroy($src);
 
-        return redirect()->to(base_url('public/AjouterProd/index/ajout_ok'));
+        return redirect()->to(base_url('AjouterProd/index/ajout_ok'));
     }
 }

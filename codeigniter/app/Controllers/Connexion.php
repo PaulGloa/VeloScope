@@ -44,7 +44,7 @@ class Connexion extends BaseController
         $session->set('mail', $mail);
         $session->set('role', $user->role);
 
-        return redirect()->to(base_url('public'));
+        return redirect()->to(base_url('/'));
     }
 
     public function forgotPassword() {
@@ -58,6 +58,6 @@ class Connexion extends BaseController
     public function deconnexion() {
         $session = \Config\Services::session();
         $session->destroy();
-        return redirect()->to(base_url('public'));
+        return redirect()->to(base_url('/'));
     }
 }

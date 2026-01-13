@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
             ["client1@velos.fr", "Bernard", "Pierre", "client123", "client"],
             ["client2@velos.fr", "Durand", "Marie", "client456", "client"],
             ["client3@velos.fr", "Petit", "Luc", "client789", "client"],
+            ["admin1@velos.fr", "Doe", "John", "admin123", "moderateur"],
         ] as [$mail, $nom, $prenom, $mdp, $role]) {
 
             // Using Query Builder

@@ -2,7 +2,10 @@
 
 namespace App\Controllers;
 
+use App\Models\DbCommandeModel;
 use App\Models\DbProductModel;
+use App\Models\DbUserModel;
+use CodeIgniter\Database\Exceptions\DataException;
 
 class Home extends BaseController
 {
@@ -90,5 +93,48 @@ class Home extends BaseController
         }
 
         return $a->nom < $b->nom;
+    }
+
+    function devenirVendeur() {
+        
+        $mail = session()->get('mail');
+        
+        $dbUser = new DbUserModel();
+        $user = $dbUser->where('mail', $mail)->first();
+        $user->role = 'vendeur';
+
+        try {
+            $dbUser->update($user->id, $user);
+        } catch (DataException $e) {}
+
+        session()->set('role', $user->role);
+
+        return redirect()->to(base_url('Home'));
+    }
+
+    function credits(){
+        return view('credits');
+    }
+
+    function supprProfil() {
+        $id = session('id');
+
+        $dbUser = new DbUserModel();
+        $dbCommande = new DbCommandeModel();
+        $dbProduct = new DbProductModel();
+
+        $products = $dbProduct->where('vendeur', $id)->findAll();
+
+        foreach ($products as $prod) {
+            $dbCommande->where('produit', $prod->id)->delete();
+        }
+
+        $dbCommande->where('client', $id)->delete();
+        $dbProduct->where('vendeur', $id)->delete();
+        $dbUser->where('id', $id)->delete();
+
+        session()->destroy();
+
+        return redirect()->to(base_url('Home'));
     }
 }

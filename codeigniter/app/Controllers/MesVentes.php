@@ -9,8 +9,12 @@ use App\Models\DbUserModel;
 class MesVentes extends BaseController
 {
     function index() {
+        $dbProduct = new DbProductModel();
+
+        $data['categories'] = $dbProduct->getCategories();
         $data['mode'] = 'vendeur';
         $data['commandes'] = $this->getCommandes(session('id'));
+        
         return view('gerer_commande_view', $data);
     }
 
@@ -24,7 +28,7 @@ class MesVentes extends BaseController
         $commandes = [];
 
         foreach ($produits as $produit) {
-               array_merge($commandesBrut, $dbCommandes->where('produit', $produit->id)->findAll());
+            $commandesBrut = array_merge($commandesBrut, $dbCommandes->where('produit', $produit->id)->findAll());
         }
 
         foreach ($commandesBrut as $commande) {

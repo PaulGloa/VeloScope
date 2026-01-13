@@ -10,8 +10,11 @@ class MesCommandes extends BaseController
 {
     function index() {
 
+        $dbProduct = new DbProductModel();
+
         $userId = session('id');
 
+        $data['categories'] = $dbProduct->getCategories();
         $data['commandes'] = $this->getCommandes($userId);
         $data['mode'] = 'client';
 
@@ -42,6 +45,6 @@ class MesCommandes extends BaseController
 
         $dbCommandes->where('id', $commandeId)->delete();
 
-        return redirect()->to(base_url('public/MesCommandes'));
+        return redirect()->to(base_url('MesCommandes'));
     }
 }

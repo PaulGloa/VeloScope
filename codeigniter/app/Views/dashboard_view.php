@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/style.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/Dashboard.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/couleurs.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/cardArticle.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/Dashboard.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/couleurs.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/cardArticle.css'); ?>">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 <nav class="navbar">
     <div class="box1_header">
-        <a href="<?php echo base_url('public'); ?>">
-            <img class="logo" src="<?php echo base_url('public/assets/img/logo.jpg');?>">
+        <a href="/">
+            <img class="logo" src="<?php echo base_url('assets/img/logo.jpg');?>">
         </a>
         <div class="display-categories">
             <button class="categories">Catégories v</button>
@@ -30,12 +30,12 @@
                 <li class="last-li"><a>test8</a></li>
             </ul>
         </div>
-        <form id="search-form" action="<?php echo base_url('public/Home/recherche'); ?>" method="post">
+        <form id="search-form" action="<?php echo base_url('Home/recherche'); ?>" method="post">
             <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" >
         </form>
         <div class="bouttons">
             <h3>Bonjour <?=session()->get('prenom')?> </h3>
-            <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
+            <button class="btn-type-1"><a href="<?= base_url('Connexion/deconnexion') ?>">Deconnexion</a></button>
         </div>
     </div>
 </nav>
@@ -60,7 +60,7 @@
         </div>
         <div id="infos">
             <h1>Modifier mes Informations</h1>
-            <form action="<?= base_url('public/Dashboard/modifInfos')?>" method="post">
+            <form action="<?= base_url('Dashboard/modifInfos')?>" method="post">
                 <div class="details_infos">
                     <label for="mail">Email : </label>
                     <input class="text_input" type="text" name="mail" value="<?=$user->mail?>">
@@ -101,7 +101,7 @@
     </div>
 
     <?php if (session()->get('role') == 'client') : ?>
-        <form action="<?= base_url('public/Dashboard/devenirVendeur')?>" method="post">
+        <form action="<?= base_url('Dashboard/devenirVendeur')?>" method="post">
             <input id="button" type="submit" value="Devenir vendeur">
         </form>
     <?php endif;?>
@@ -110,7 +110,7 @@
     <div id="vendeur">
         <div id="ajout_produit">
             <h1>Ajouter un Produit</h1>
-            <form action="<?= base_url('public/Dashboard/ajoutProduit')?>" method="post" enctype="multipart/form-data" >
+            <form action="<?= base_url('Dashboard/ajoutProduit')?>" method="post" enctype="multipart/form-data" >
                 <div class="details_ajout">
                     <label for="nom_produit">Nom : </label>
                     <input class="text_input" type="text" name="nom_produit" value="<?= session()->get('nom_produit') ?>">
@@ -145,7 +145,7 @@
     </div>
     <div id="produits">
         <h1>Mes produits</h1>
-        <form action="<?php echo base_url('public/Dashboard'); ?>" method="post">
+        <form action="<?php echo base_url('Dashboard'); ?>" method="post">
             <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" >
         </form>
         <div class="diplay-card">
@@ -153,17 +153,17 @@
             <div class="card">
                 <ul>
                     <li>
-                        <a href="<?= base_url('public/Dashboard/delete/' . $productVendeur->id) ?>" class="delete-product">
+                        <a href="<?= base_url('Dashboard/delete/' . $productVendeur->id) ?>" class="delete-product">
                             <i class="fa-regular fa-square-minus" id="delete"></i>
                         </a>
                     </li>
                     <li><h1><?= $productVendeur->nom?></h1></li>
-                    <li><div><img src="<?php echo base_url("public/assets/imageProduit/$productVendeur->id.jpg")?>" alt="produit"></div></li>
+                    <li><div><img src="<?php echo base_url("assets/imageProduit/$productVendeur->id.jpg")?>" alt="produit"></div></li>
                     <li><p><?=$productVendeur->desc?></p></li>
                     <li>
                     <ul class="acheter">
                         <li><h1 class="prix"><?=$productVendeur->prix?>€</h1></li>
-                        <li><button><a href="<?php echo base_url('public/ModifProduit/index/' . $productVendeur->id)?>">⚙️</a></button></li>
+                        <li><button><a href="<?php echo base_url('ModifProduit/index/' . $productVendeur->id)?>">⚙️</a></button></li>
                     </ul>
                     </li>
                 </ul>

@@ -17,6 +17,8 @@ class Product extends BaseController {
     public function index($id) {
 
         $productModel = new DbProductModel();
+
+        $data['categories'] = $productModel->getCategories();
         $data['data'] = $productModel->findAll();
         $data['product'] = $productModel->find($id);
         session()->set("currentProductId", $id);
@@ -61,7 +63,7 @@ class Product extends BaseController {
         ];
 
         if (session()->get("id") == null) {
-            return redirect()->to(base_url('public/Connexion'));
+            return redirect()->to(base_url('Connexion'));
         }
 
         return view("confirme_achat_view.php", $data);
@@ -103,6 +105,6 @@ class Product extends BaseController {
         $commandeModel = new DbCommandeModel();
         $commandeModel->save($commande);
 
-        return redirect()->to(base_url('public'));
+        return redirect()->to(base_url(''));
     }
 }

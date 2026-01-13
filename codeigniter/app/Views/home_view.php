@@ -4,125 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accueil</title>
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/style.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/couleurs.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/cardArticle.css');?>">
-    <link rel="stylesheet" href="<?php echo base_url('public/assets/css/btn-profil.css');?>">
-    </head>
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/couleurs.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/cardArticle.css');?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/btn-profil.css');?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="<?=base_url("assets/js/alertBox.js")?>" defer></script>
+    <script src="<?php echo base_url('assets/js/test.js'); ?>" defer></script>
+</head>
 <body>
-    <nav class="navbar">
-            <div class="box1_header">
-                <a href="<?php echo base_url('public'); ?>">
-                    <img class="logo" src="<?php echo base_url('public/assets/img/logo.jpg');?>">
-                </a>
-                <div class="display-categories">
-                    <form action="<?php echo base_url('public/Home/recherche'); ?>" method="post">
-                        <select class="categories" name="categorie" onchange="document.getElementById('submit-button').click()">
-                            <option>Categorie</option>
-                            <option value="tout">Tout</option>
-                            <?php foreach ($categories as $categorie) :?>
-                                <option value="<?=$categorie?>"><?=$categorie?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <input type="submit" id="submit-button" style="display: none;">
-                    </form>
-                </div>
-                <form id="search-form" action="<?php echo base_url('public/Home/recherche'); ?>" method="post">
-                    <?php if (session()->get('keyword') != NULL) :?>
-                        <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" value="<?=session()->get('keyword')?>">
-                    <?php else :?>
-                        <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" >
-                    <?php endif; ?>
-                </form>    
-
-                <div class="bouttons">
-                    <?php if (session()->get('nom') == null) :?>
-                        <button class="btn-type-1-inscription"><a href="<?php echo base_url('public/Inscription'); ?>">Inscription</a></button>
-                        <button class="btn-type-1"><a href="<?php echo base_url('public/Connexion'); ?>">Connexion</a></button>
-                    <?php elseif (session()->get('role') == 'client') : ?>
-                        <div class="profil-container">
-                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
-                            <div id="options" class="options">
-                                <h2><img src="<?php echo base_url('public/assets/img/profil.jpg') ; ?>" class="img-profil"> Mon Profil</h2>
-                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
-                                <p class="pline">____________________________</p>
-                                <a href="<?php echo base_url('public/ModifInfos'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Commandes</button>
-                                <p class="pline">____________________________</p>
-                                <form action="<?= base_url('public/Dashboard/devenirVendeur')?>" method="post">
-                                    <button class="line-red"><img src="<?php echo base_url('public/assets/img/vendeur.png') ; ?>" class="img-profil"> Devenir vendeur</button>
-                                </form>
-                                    <p class="pline">____________________________</p>
-                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>
-                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/poubelle.png') ; ?>" class="img-profil"> Supprimer son profil</button>
-                                <p class="pline">____________________________</p>
-                            </div>
-                        </div>
-                        <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
-                   <?php elseif (session()->get('role') == 'vendeur') : ?>
-                        <div class="profil-container">
-                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
-                            <div id="options" class="options-vendeur">
-                                <h2><img src="<?php echo base_url('public/assets/img/profil.jpg') ; ?>" class="img-profil"> Mon Profil</h2>
-                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
-                                <p class="pline">____________________________</p>
-                                <a href="<?php echo base_url('public/ModifInfos'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button></a>
-                                <p class="pline">____________________________</p>
-                                <a href="<?php echo base_url('public/MesCommandes'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Commandes</button></a>
-                                <a href="<?php echo base_url('public/MesVentes'); ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Ventes</button></a>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Mon Magasin</button>
-                                <a href="<?= base_url('public/AjouterProd') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Ajouter produits</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>
-                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/poubelle.png') ; ?>" class="img-profil"> Supprimer son profil</button>
-                                <p class="pline">____________________________</p>
-                            </div>
-                        </div>
-                        <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
-                   <?php elseif (session()->get('role') == 'moderateur') : ?>
-                        <div class="profil-container">
-                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
-                            <div id="options" class="options-modo">
-                                <h2><img src="<?php echo base_url('public/assets/img/profil.jpg') ; ?>" class="img-profil"> Mon Profil</h2>
-                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
-                                <p class="pline">____________________________</p>
-                                <a href="<?= base_url('public/ModifInfos') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/rouage.png') ; ?>" class="img-profil"> Modifier des Informations</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Mes Commandes</button>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/panier.png') ; ?>" class="img-profil"> Consulter les commandes</button>
-                                <a href="<?= base_url('public/Connexion') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Consulter les produits</button></a>
-                                <a href="<?= base_url('public/Connexion') ?>"><button class="line-red"><img src="<?php echo base_url('public/assets/img/colis.png') ; ?>" class="img-profil"> Ajouter produits</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-red"><img src="<?php echo base_url('public/assets/img/modo.png') ; ?>" class="img-profil"> Consulter liste users</button>
-                                <p class="pline">____________________________</p>
-                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/deco.png') ; ?>" class="img-profil"> Se déconnecter</button>
-                                <button class="line-bas-red"><img src="<?php echo base_url('public/assets/img/poubelle.png') ; ?>" class="img-profil"> Supprimer son profil</button>
-                                <p class="pline">____________________________</p>
-                            </div>
-                        </div>
-                        <button class="btn-type-1"><a href="<?= base_url('public/Connexion/deconnexion') ?>">Deconnexion</a></button>
-                    <?php endif;?>
-                </div>
-            </div>
-    </nav>
+    <?php require_once('navbar.php'); ?>
     <div class="main-title">
         <h1>Bienvenue sur VéloScope</h1>
-        <h2>Le meilleur site de vente de vélo</h2>
-        <p>Découvrez notre sélection de produits de qualité pour tous vos de sportif.</p>
+        <h2 >Le Marché Complet du Vélo</h2>
+        <p class="test">Découvrez notre sélection de produits de qualité pour tous vos types d'envies.</p>
+        <p>Véloscope est un Marketplace responsable laissant place à différents vendeurs pour qu'ils puissent exposer leurs produits.</p>
     </div>
     <div class="carousel">
         <div class="carousel-slide">
-            <img class="carousel-photo" src="<?php echo base_url('public/assets/img/img-test1.jpeg'); ?>" alt="img01" />
-            <img src ="<?php echo base_url('public/assets/img/img-test2.jpeg'); ?>" alt="img02" class="carousel-photo"/>
-            <img src ="<?php echo base_url('public/assets/img/img-test3.jpg'); ?>" alt="img03" class="carousel-photo"/>
+            <img class="carousel-photo" src="<?php echo base_url('assets/img/img-test1.jpeg'); ?>" alt="img01" />
+            <img src ="<?php echo base_url('assets/img/img-test2.jpeg'); ?>" alt="img02" class="carousel-photo"/>
+            <img src ="<?php echo base_url('assets/img/img-test3.jpg'); ?>" alt="img03" class="carousel-photo"/>
         </div>
     </div>
     <div class="main-content">
         <div class="tri-box">
             <h1 >Trier par :</h1>
             <div class="tri-options">
-                <form action="<?= base_url('public/Home/recherche'); ?>" method="post">
+                <form action="<?= base_url('Home/recherche'); ?>" method="post">
                     <fieldset class="fieldset">
                         <legend>Trier par : </legend>
                         <div class="radio"><input type="radio" name="tri" value="croissant">Prix croissant</div>
@@ -153,12 +63,12 @@
                 <div class="card">
                     <ul>
                         <li><h1><?= $product->nom?></h1></li>
-                        <li><div><img src="<?php echo base_url("public/assets/imageProduit/$product->id.jpg")?>" alt="produit"></div></li>
+                        <li><div><img src="<?php echo base_url("assets/imageProduit/$product->id.jpg")?>" alt="produit"></div></li>
                         <li><p><?=$product->desc?></p></li>
                         <li>
                         <ul class="acheter">
                             <li><h1 class="prix"><?=$product->prix?>€</h1></li>
-                            <li><button><a href="<?php echo base_url('public/Product/' . $product->id)?>">🛒</a></button></li>
+                            <a href="<?php echo base_url('Product/' . $product->id)?>"><li><button><i class="fa-solid fa-cart-shopping"></i></button></li></a>
                         </ul>
                         </li>
                     </ul>
@@ -172,21 +82,21 @@
             <div class="footerbox">
                 <h1>Pour mieux nous connaître</h1>
                 <ul>
-                    <a href="<?= base_url('public/Connexion'); ?>#1"><li>Qui sommes-nous ?</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#2"><li>Notre mission</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#3"><li>Une marketplace collaborative</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#4"><li>Un cadre sécurisé</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#5"><li>Une passion commune</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#1"><li>Qui sommes-nous ?</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#2"><li>Notre mission</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#3"><li>Une marketplace collaborative</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#4"><li>Un cadre sécurisé</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#5"><li>Une passion commune</li></a>
                 </ul>
             </div>
             <div class="footerbox">
                 <h1>Informations légales</h1>
                 <ul>
-                    <a href="<?= base_url('public/Connexion'); ?>#7"><li>Mentions légales</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#12"><li>Conditions Générales de Vente (CGV)</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#19"><li>Conditions Générales d’Utilisation (CGU)</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#24"><li>Politique de confidentialité</li></a>
-                    <a href="<?= base_url('public/Connexion'); ?>#28"><li>Politique de cookies</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#7"><li>Mentions légales</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#12"><li>Conditions Générales de Vente (CGV)</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#19"><li>Conditions Générales d’Utilisation (CGU)</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#24"><li>Politique de confidentialité</li></a>
+                    <a href="<?= base_url('Home/credits'); ?>#28"><li>Politique de cookies</li></a>
                 </ul>
             </div>
             <div class="footerbox">
@@ -200,7 +110,5 @@
         </div>
         <p class="line-credits">© 2024-2026, VéloScope.com Inc. ou ses affiliés</p>
     </footer>
-    <script src="<?php echo base_url('public/assets/js/test.js'); ?>"></script>
 </body>
 </html>
-

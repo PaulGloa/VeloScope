@@ -1,5 +1,6 @@
 // Récupérer le bouton du dropdown
 const dropbtn = document.getElementById('dropbtn');
+var selectedRole = '';
 
 // Ouvrir/fermer le menu au clic sur le bouton
 dropbtn.addEventListener('click', function(e) {
@@ -16,6 +17,7 @@ window.addEventListener('click', function() {
 
 // Fonction pour sélectionner le rôle et mettre à jour le bouton
 function selectRole(role) {
+  selectedRole = role;
   dropbtn.textContent = "Rôle sélectionné : " + role;
   dropbtn.parentElement.classList.remove('show');
 }
