@@ -36,7 +36,7 @@
                                 <p class="pline">____________________________</p>
                                 <a href="<?php echo base_url('ModifInfos'); ?>"><button class="line-red"><i class="fa-solid fa-user-gear"></i> Modifier des Informations</button></a>
                                 <p class="pline">____________________________</p>
-                                <a href="MesCommandes"><button class="line-red"><i class="fa-solid fa-cart-shopping"></i> Mes Commandes</button></a>
+                                <a href="/MesCommandes"><button class="line-red"><i class="fa-solid fa-cart-shopping"></i> Mes Commandes</button></a>
                                 <p class="pline">____________________________</p>
                                 <?php if (session()->get('role') == 'client') :?>
                                     <form id="devenir-vendeur-form" action="<?= base_url('Home/devenirVendeur')?>" method="post">
@@ -63,7 +63,6 @@
                                 <a href="<?=base_url('Home/supprProfil')?>" id="suppr-anchor"><button class="line-bas-red" id="suppr-profil"><i class="fa-solid fa-trash-can"></i> Supprimer son profil</button></a>
                             </div>
                         </div>
-                        <a href="<?= base_url('Connexion/deconnexion') ?>"><button class="btn-type-1">Deconnexion</button></a>
                     <?php endif;?>
                 </div>
             </div>

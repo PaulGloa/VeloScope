@@ -1,0 +1,55 @@
+body {
+            background-color: #f9f9f9; /* Fond page gris très clair */
+        }
+        .legal-container {
+            max-width: 700px;
+            margin: 60px auto;
+            background-color: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 5px solid #07405F; /* Touche de couleur marque */
+        }
+        
+        .legal-title {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 1.1rem;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #555;
+            width: 40%;
+        }
+
+        .info-value {
+            width: 60%;
+            color: #000;
+            text-align: right;
+        }
+
+        .info-value a {
+            color: #07405F;
+            text-decoration: none;
+        }
+        
+        .info-value a:hover {
+            text-decoration: underline;
+        }

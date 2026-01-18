@@ -40,4 +40,16 @@ class MesVentes extends BaseController
 
         return $commandes;
     }
+
+    function livrerCommande($commandeId) {
+        $dbCommande = new DbCommandeModel();
+
+        $commande = $dbCommande->where('id', $commandeId)->first();
+        
+        $commande->etat = 'livré';
+
+        $dbCommande->save($commande);
+
+        return redirect()->to('MesVentes');
+    }
 }

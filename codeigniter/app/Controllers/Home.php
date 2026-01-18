@@ -111,9 +111,11 @@ class Home extends BaseController
 
         return redirect()->to(base_url('Home'));
     }
-
+    
     function credits(){
-        return view('credits');
+        $dbProduct = new DbProductModel();
+        $data["categories"]=$dbProduct->getCategories();
+        return view('credits',$data);
     }
 
     function supprProfil() {

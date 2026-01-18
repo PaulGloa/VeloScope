@@ -13,45 +13,73 @@
     <script src="<?php echo base_url('assets/js/test.js'); ?>" defer></script>
 </head>
 <body>
-    <?php require_once('navbar.php'); ?>
-        <div class="main-box">
+    <?php require_once('navbar.php'); ?><div class="main-box">
+
         <?php if (empty($commandes)) : ?>
             <div class="test-box">
                 <h1>Vous n'avez actuellement aucune commande sur notre site</h1>
             </div>
-            <?php else :?>
+        <?php else : ?>
+
             <?php foreach ($commandes as $commande) : ?>
-            <div class="prod-box">
-                <div class="text-box3">
-                    <h1>Numéro Commande:</h1>
-                    <h2 class="petit-txtbox3"><?=$commande['commande']->id?></h2>
-                    <?php if ($mode == 'client') : ?>
-                        <h1 class="petit-txtbox">Vendeur :</h1>
-                        <h2 class="petit-txtbox2"><?=$commande['vendeur']->prenom?> <?=$commande['vendeur']->nom?></h2>
-                    <?php elseif ($mode == 'vendeur') : ?>
-                        <h1 class="petit-txtbox">Client :</h1>
-                        <h2 class="petit-txtbox2"><?=$commande['client']->prenom?> <?=$commande['client']->nom?></h2>
-                    <?php else : ?>
-                        <h1 class="petit-txtbox">Utilisateurs :</h1>
-                        <h2 class="petit-txtbox2">Client : <?=$commande['client']?>  Vendeur : <?=$commande['vendeur']?></h2>
-                    <?php endif; ?>
-                    <h1 class="petit-txtbox">Etat :</h1>
-                    <h2 class="petit-txtbox2">Livré/En cours</h2>
-                </div>
-                <div class="text-box4">
-                    <h1>Article acheté :</h1>
-                    <h2><?=$commande['produit']->nom?></h2>
-                </div>
-                <form action="<?= base_url('MesCommandes/annulerCommande')?>" method="post">
-                    <input type="hidden" name="commandeId" value="<?=$commande['commande']->id?>">
-                    <div class="box4">
-                        <button class="suppr-product2" type="submit">Annuler la commande</button>
+                <div class="prod-box user-card">
+
+                    <div class="user-info">
+                        <h2>Commande</h2>
+                        <p><strong>#<?=$commande['commande']->id?></strong></p>
+
+                        <?php if ($mode == 'client') : ?>
+                            <h2>Vendeur :</h2>
+                            <p>
+                                <a href="<?=base_url('Vendeur/index/' . $commande['vendeur']->id)?>">
+                                    <?=$commande['vendeur']->prenom?> <?=$commande['vendeur']->nom?>
+                                </a>
+                            </p>
+                        <?php elseif ($mode == 'vendeur') : ?>
+                            <h2>Client :</h2>
+                            <p><?=$commande['client']->prenom?> <?=$commande['client']->nom?></p>
+                        <?php endif; ?>
+
+                        <h2>État :</h2>
+                        <p><strong><?=$commande['commande']->etat?></strong></p>
                     </div>
-                </form>
-            </div>
+
+                    <div class="user-role">
+                        <h2>Article acheté</h2>
+                        <p><?=$commande['produit']->nom?></p>
+                        <h2>Nombre d'articles</h2>
+                        <p><?=$commande['commande']->quantite?></p>
+                        <h2>Montant</h2>
+                        <p><?=$commande['produit']->prix?></p>
+
+                    </div>
+
+                    <div class="user-actions">
+
+                        <?php if ($mode == 'vendeur' && $commande['commande']->etat != 'livré') : ?>
+                            <a href="<?=base_url('MesVentes/livrerCommande/' . $commande['commande']->id)?>">
+                                <button class="apply-changes">Livrer la commande</button>
+                            </a>
+                        <?php endif; ?>
+
+                        <form action="<?= base_url('MesCommandes/annulerCommande')?>" method="post" id="suppr-commande-form">
+                            <input type="hidden" name="commandeId" value="<?=$commande['commande']->id?>">
+                            <?php if ($commande['commande']->etat == 'livré') : ?>
+                                <button class="suppr-product" type="submit" id="suppr-commande">Supprimer la commande</button>
+                            <?php else : ?>    
+                                <button class="suppr-product" type="submit" id="suppr-commande">Annuler la commande</button>
+                            <?php endif; ?>
+                        </form>
+
+                    </div>
+
+                </div>
             <?php endforeach; ?>
-            <?php endif;?>
-        </div>
+
+        <?php endif; ?>
+
+    </div>
+
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#07405F" fill-opacity="1" d="M0,224L21.8,218.7C43.6,213,87,203,131,181.3C174.5,160,218,128,262,133.3C305.5,139,349,181,393,202.7C436.4,224,480,224,524,218.7C567.3,213,611,203,655,213.3C698.2,224,742,256,785,240C829.1,224,873,160,916,144C960,128,1004,160,1047,165.3C1090.9,171,1135,149,1178,133.3C1221.8,117,1265,107,1309,112C1352.7,117,1396,139,1418,149.3L1440,160L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z"></path></svg>
     <footer class="footer">
         <div class="footergrossebox">

@@ -1,7 +1,7 @@
 .main-title {
     text-align: center;
     height: 300px;
-    margin: 100px 0 0 0;
+    margin: 50px 0 75px 0;
     color: var(--dark-high-text);
     font-size: 25px;
 }
@@ -57,6 +57,7 @@
 .card2 h1,
 .card h1 {
     color: var(--dark-high-text);
+    height: 56px;
     text-align: center;
     margin: 0.5rem 0;
     font-size: 1.5rem;
@@ -65,6 +66,7 @@
 .card2 p,
 .card p {
     color: var(--dark-low-text);
+    height: 68px;
     width: 100%;
     font-size: 0.9rem;
     margin: 1rem 0;
@@ -125,6 +127,8 @@
 }
 
 .acheter h1 {
+    display: flex;
+    align-items: center;
     margin: 0;
     font-size: 1.2rem;
 }
@@ -141,6 +145,8 @@ h1.prix {
 }
 
 .tri-box {
+    top: 120px;
+    position: sticky;
     width: 25%;
     height: 800px;
     border: 3px solid var(--dark-low-primary);
@@ -160,7 +166,13 @@ h1.prix {
 }
 
 .radio{
-margin-top:20px ;
+    margin-top:20px ;    
+}
+.radio-btn{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 25px;
+    width: 25px;
 }
 
 .h3{
@@ -200,11 +212,6 @@ margin-top:20px ;
     background-color: var(--primary);
 }
 
-
-.text_input{
-    padding-top: 15px;
-}
-
 @media (max-width: 900px) {
     .main-content {
         flex-direction: column;
@@ -213,12 +220,12 @@ margin-top:20px ;
         width: 100%;
         margin-bottom: 1rem;
         order: 1;
+        position: inherit;
     }
     .diplay-card {
         order: 2;
     }
 }
-/* Pour les très petits écrans (1 carte centrée) */
 @media (max-width: 600px) {
     .main-content {
         flex-direction: column;
@@ -227,6 +234,7 @@ margin-top:20px ;
         width: 100%;
         margin-bottom: 1rem;
         order: 1;
+        position: inherit;
     }
     .diplay-card {
         order: 2;

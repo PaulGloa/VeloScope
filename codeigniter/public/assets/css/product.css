@@ -86,6 +86,7 @@
     margin-top: 3vh;
     margin-left: 1vw;
     margin-right: 1vw;
+    min-height: 100px;
 }
 
 #description h2 {
@@ -93,6 +94,7 @@
 }
 
 #description p {
+    margin-top: 20px;
     color: var(--dark-low-text);
 }
 

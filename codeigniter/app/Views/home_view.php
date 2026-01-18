@@ -19,13 +19,13 @@
         <h1>Bienvenue sur VéloScope</h1>
         <h2 >Le Marché Complet du Vélo</h2>
         <p class="test">Découvrez notre sélection de produits de qualité pour tous vos types d'envies.</p>
-        <p>Véloscope est un Marketplace responsable laissant place à différents vendeurs pour qu'ils puissent exposer leurs produits.</p>
+        <p>Véloscope est une marketplace responsable offrant un espace à différents vendeurs pour présenter leurs produits.</p>
     </div>
     <div class="carousel">
         <div class="carousel-slide">
-            <img class="carousel-photo" src="<?php echo base_url('assets/img/img-test1.jpeg'); ?>" alt="img01" />
-            <img src ="<?php echo base_url('assets/img/img-test2.jpeg'); ?>" alt="img02" class="carousel-photo"/>
-            <img src ="<?php echo base_url('assets/img/img-test3.jpg'); ?>" alt="img03" class="carousel-photo"/>
+            <img class="carousel-photo" src="<?php echo base_url('assets/img/caroussel1.png'); ?>" alt="img01" />
+            <img src ="<?php echo base_url('assets/img/caroussel2.jpg'); ?>" alt="img02" class="carousel-photo"/>
+            <img src ="<?php echo base_url('assets/img/caroussel3.jpg'); ?>" alt="img03" class="carousel-photo"/>
         </div>
     </div>
     <div class="main-content">
@@ -35,10 +35,10 @@
                 <form action="<?= base_url('Home/recherche'); ?>" method="post">
                     <fieldset class="fieldset">
                         <legend>Trier par : </legend>
-                        <div class="radio"><input type="radio" name="tri" value="croissant">Prix croissant</div>
-                        <div class="radio"><input type="radio" name="tri" value="decroissant">Prix décroissant</div>
-                        <div class="radio"><input type="radio" name="tri" value="az">Nom A-Z</div>
-                        <div class="radio"><input type="radio" name="tri" value="za">Nom Z-A</div>
+                        <div class="radio"><input type="radio" name="tri" value="croissant" class="radio-btn">Prix croissant</div>
+                        <div class="radio"><input type="radio" name="tri" value="decroissant" class="radio-btn">Prix décroissant</div>
+                        <div class="radio"><input type="radio" name="tri" value="az" class="radio-btn">Nom A-Z</div>
+                        <div class="radio"><input type="radio" name="tri" value="za" class="radio-btn">Nom Z-A</div>
                     </fieldset>
                     <h3 class="h3">Filtrer par catégorie :</h3>
                     <div class="select-container">

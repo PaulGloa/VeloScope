@@ -7,12 +7,17 @@ use App\Models\DbProductModel;
 use App\Models\DbUserModel;
 
 class UsersAdmin extends BaseController {
-    function index() {
+    function index($users = null) {
         $dbProduct = new DbProductModel();
-        $dbUser = new DbUserModel();
-
+        
         $data['categories'] = $dbProduct->getCategories();
-        $data['users'] = $dbUser->findAll();
+
+        if ($users != null) {
+            $data['users'] = $users;
+        }else {
+            $dbUser = new DbUserModel();
+            $data['users'] = $dbUser->findAll();
+        }
 
         return view('gerer_user_view', $data);
     }
@@ -45,8 +50,6 @@ class UsersAdmin extends BaseController {
 
         $dbUser->save($user);
 
-        session()->set('role', $user->role);
-
         return redirect()->to(base_url('UsersAdmin'));
     }
 
@@ -66,5 +69,33 @@ class UsersAdmin extends BaseController {
         $dbUser->where('id', $id)->delete();
 
         return redirect()->to(base_url('UsersAdmin'));
+    }
+
+    function recherche() {
+        $dbUser = new DbUserModel();
+
+        $selectedRole = $_POST['selectedRole'] ?? "tous";
+        $userName = $_POST['userName'] ?? "";
+
+        $users = $dbUser->findAll();
+
+        if ($userName != "") {
+            $users = $dbUser->table('user')->like('prenom', $userName)->orLike('nom', $userName)->findAll();
+        }
+
+        $finalUsers = [];
+
+        if ($selectedRole != "tous") {
+            foreach ($users as $user) {
+                if ($user->role == $selectedRole) {
+                    array_push($finalUsers, $user);
+                }
+            }
+        } else {
+            $finalUsers = $users;
+        }
+
+        return $this->index($finalUsers);
+
     }
 }

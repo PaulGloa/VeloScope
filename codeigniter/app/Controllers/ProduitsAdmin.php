@@ -7,23 +7,32 @@ use App\Models\DbProductModel;
 use App\Models\DbUserModel;
 
 class ProduitsAdmin extends BaseController {
-    function index() {
+    function index($produits = null) {
 
-        session()->remove(['nom_produit', 'prix', 'stock', 'categorie', 'desc']);
+        session()->remove(['nom_produit', 'prix', 'stock', 'categorie', 'desc', 'etat']);
 
         $dbProduct = new DbProductModel();
 
         $data['categories'] = $dbProduct->getCategories();
-        $data['produits'] = $this->getProduits();
+
+        if ($produits != null){
+            $data['produits'] = $this->getProduits($produits);    
+        } else {
+            $data['produits'] = $this->getProduits();
+        }
 
         return view('gerer_prod_view', $data);
     }
 
-    function getProduits() {
+    function getProduits($produits = null) {
         $dbProduct = new DbProductModel();
 
-        $products = $dbProduct->findAll();
-
+        if ($produits != null) {
+            $products = $produits;
+        } else {
+            $products = $dbProduct->findAll();
+        }
+        
         $data = [];
 
         $dbUser = new DbUserModel();
@@ -51,5 +60,32 @@ class ProduitsAdmin extends BaseController {
         }
 
         return redirect()->to(base_url('MonMagasin'));
+    }
+
+    function recherche() {
+        $dbProduct = new DbProductModel();
+
+        $categorie = $_POST['categorie'] ?? "tout";
+        $productName = $_POST['productName'] ?? "";
+
+        $produits = $dbProduct->findAll();
+
+        if ($productName != "") {
+            $produits = $dbProduct->searchbar($productName);
+        }
+
+        $finalProducts = [];
+
+        if ($categorie != "tout") {
+            foreach ($produits as $produit) {
+                if ($produit->categorie == $categorie) {
+                    array_push($finalProducts, $produit);
+                }
+            }
+        } else {
+            $finalProducts = $produits;
+        }
+
+        return $this->index($finalProducts);
     }
 }

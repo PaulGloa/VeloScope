@@ -14,10 +14,25 @@
 </head>
 <body>
     <?php require_once('navbar.php'); ?>
+    <div class="centrer">
+        <div class="tri-recherche">
+        <form  action="<?=base_url('ProduitsAdmin/recherche')?>" method="post">
+            <select name="categorie" class="btn-downfall">
+                <option value="tout">Tout</option>
+                <?php foreach ($categories as $categorie) :?>
+                    <option value="<?=$categorie?>"><?=$categorie?></option>
+                <?php endforeach; ?>
+            </select>
+            <input type="search" name="productName" placeholder="Rechercher un produit" class="research">
+            <input type="submit" value="Rechercher" class="btn-primary2">
+        </form>
+        </div>
+    </div>
+
     <div class="main-box">
 
         <?php if (session()->get('role')=='vendeur') : ?>
-        <a href="<?= base_url('AjouterProd') ?>"><div class="ajout-box"><img src="<?= base_url('assets/img/plus.png') ?>" class="plus"></div></a>
+        <a href="<?= base_url('AjouterProd') ?>"><div class="ajout-box"><i class="fa-solid fa-plus plus"></i></div></a>
         <?php endif;?>        
         <?php if (empty($produits)) : ?>
             <div class="test-box">
@@ -28,7 +43,7 @@
                 <div class="prod-box2">
                     <div class="box1">
                     <h2><?= $produit['produit']->nom?></h2>
-                    <img src="<?= base_url('assets/img/images.png') ?>" class="img-prod">
+                    <div class="img-prod"><img src="<?= base_url('assets/imageProduit/' . $produit['produit']->id . '.jpg') ?>" class="img-prod"></div>
                     <p><?= $produit['produit']->desc?></p>
                 </div>
                 <div class="box3">
@@ -40,8 +55,8 @@
                     <?php if (session()->get('role') == 'moderateur') : ?>
                     <h2><?=$produit['vendeur']->prenom?> <?=$produit['vendeur']->nom?></h2>
                     <?php endif;?>
-                    <a href="<?=base_url('ModifProduit/index/' . $produit['produit']->id)?>"><button class="apply-changes">Modifier Produit</button></a>
-                    <a href="<?=base_url('MonMagasin/deleteProduit/' . $produit['produit']->id)?>"><button class="suppr-product">Supprimer produit</button></a>
+                    <a href="<?=base_url('ModifProduit/index/' . $produit['produit']->id)?>" class="lienbtn"><button class="apply-changes">Modifier Produit</button></a>
+                    <a href="<?=base_url('MonMagasin/deleteProduit/' . $produit['produit']->id)?>"class="lienbtn" id="suppr-product"><button class="suppr-product">Supprimer produit</button></a>
                 </div>
                 </div>
                 <?php endforeach; ?>

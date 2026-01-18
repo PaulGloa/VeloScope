@@ -1,40 +1,31 @@
 @keyframes carousel-animation {
-    /* Image 1 : 0% à 16.66% (5s) */
     0% {
         transform: translateX(0);
     }
     16.66% {
         transform: translateX(0);
     }
-    /* Transition vers Image 2 : 16.66% à 22.22% (1s) */
     22.22% {
-        transform: translateX(-33.32%);
+        transform: translateX(-33.34%);
     }
-    /* Image 2 : 22.22% à 38.88% (5s) */
     38.88% {
-        transform: translateX(-33.32%);
+        transform: translateX(-33.34%);
     }
-    /* Transition vers Image 3 : 38.88% à 44.44% (1s) */
     44.44% {
         transform: translateX(-66.7%);
     }
-    /* Image 3 : 44.44% à 61.11% (5s) */
     61.11% {
         transform: translateX(-66.7%);
     }
-    /* Transition vers Image 2 : 61.11% à 66.66% (1s) */
     66.66% {
-        transform: translateX(-33.32%);
+        transform: translateX(-33.34%);
     }
-    /* Image 2 : 66.66% à 83.33% (5s) */
     83.33% {
-        transform: translateX(-33.32%);
+        transform: translateX(-33.34%);
     }
-    /* Transition vers Image 1 : 83.33% à 88.88% (1s) */
     88.88% {
         transform: translateX(0);
     }
-    /* Image 1 : 88.88% à 100% (5s) */
     100% {
         transform: translateX(0);
     }
@@ -76,8 +67,8 @@ body {
 .carousel {
     margin-top: 20px;
     width: 100%;
-    height: 80vh;
-    overflow: hidden; /* ← Très important ! */
+    height: 60vh;
+    overflow: hidden; 
 }
 .carousel-slide {
     width: 300%;
@@ -224,7 +215,7 @@ body {
 .footergrossebox{
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap; /* 👈 permet la superposition */
+    flex-wrap: wrap; 
 }
 
 
@@ -245,8 +236,68 @@ body {
     margin:40px 0 0 0;
     padding-bottom: 15px;
 }
+.centrer{
+    display: flex;
+    justify-content: center;
+}
+.tri-recherche{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    height: 250px;
+    width: 30%;
+    min-width: 300px;
+    background-color:black ;
+    border: 2px solid white;
+    border-radius: 15px;
+    padding: 50px;
+    margin-top: 25px;
+}
+.btn-downfall{
+    background-color: black;
+    color: white;
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 15px;
+    margin-bottom: 15px;
+    height: 50px;
+    
+}
 
-/* Mode tablette/mobile (switch avant que la barre ne devienne trop petite) */
+.research{
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    min-width: 100%;
+    padding-left: 15px;
+    font-size: 16px;
+
+}
+
+.btn-primary2{
+    margin-top: 15px;
+    background-color: black;
+    color: white;
+    border: 2px solid var(--primary);
+    width: 100%;
+    min-width: 100%;
+    font-size: 22px;
+    height: 50px;
+    border-radius: 25px;
+    transition: 0.3s background-color ease;
+}
+.btn-primary2:hover{
+    cursor: pointer;
+    background-color: var(--primary);
+}
+@media (min-width: 901px) {
+    .bouttons {
+        margin-right: 40px;
+    }
+}
+
 @media (max-width: 900px) {
     .box1_header {
         flex-wrap: wrap;
@@ -268,6 +319,7 @@ body {
         justify-content: center;
         order: 2;
         margin-bottom: 10px;
+        margin-right: 0;
     }
     .btn-type-1-inscription, .btn-type-1 {
         width: 100%;
@@ -290,10 +342,10 @@ body {
     .footerbox ul {
         padding: 10px 0 0 0;
     }
+
 }
 
 
-/* Très petits écrans (alignement symétrique) */
 @media (max-width: 600px) {
     .box1_header {
         flex-direction: column;

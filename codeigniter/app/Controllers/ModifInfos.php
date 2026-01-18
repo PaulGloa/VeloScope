@@ -33,7 +33,7 @@ class ModifInfos extends BaseController
         $confirm_mdp = $_POST['confirm_mdp'];
 
         if ($nv_mail == "" || $nom == "" || $prenom == "") {
-            return redirect()->to(base_url('ModfiInfos/incomplet'));
+            return redirect()->to(base_url('ModifInfos/index/incomplet'));
         }
 
         $dbUser = new DbUserModel();
@@ -46,9 +46,9 @@ class ModifInfos extends BaseController
         if ($nv_mdp != null) {
 
             if ($ancien_mdp != $user->mdp) {
-                return redirect()->to(base_url('ModfiInfos/mdp'));
+                return redirect()->to(base_url('ModifInfos/index/mdp'));
             } else if ($nv_mdp != $confirm_mdp) {
-                return redirect()->to(base_url('ModfiInfos/confirm'));
+                return redirect()->to(base_url('ModifInfos/index/confirm'));
             } else {
                 $user->mdp = $nv_mdp;
             }

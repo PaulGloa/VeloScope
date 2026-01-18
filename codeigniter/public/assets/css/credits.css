@@ -9,8 +9,8 @@ body {
 
 .main-content {
     display: flex;
-    flex-wrap: wrap; /* permet aux colonnes de descendre sur petit écran */
-    gap: 15px; /* espace entre sommaire et contenu */
+    flex-wrap: wrap; 
+    gap: 15px; 
     padding: 15px;
 }
 
@@ -22,7 +22,7 @@ body {
 
 .sommaire-box {
     background-color: var(--dark-high-bg);
-    flex: 1 1 250px; /* prend 1 part mais min 250px */
+    flex: 1 1 250px; 
     border-radius: 15px;
     padding: 20px;
     max-width: 300px;
@@ -47,15 +47,15 @@ body {
 .sommaire-box a {
     color: inherit;
     text-decoration: none;
-    display: block; /* cliquable sur toute la ligne */
+    display: block; 
 }
 .sommaire-box a:hover {
-    color: #ffd700; /* couleur au hover */
+    color: #ffd700;
 }
 
 .legal-box {
     background-color: var(--dark-high-bg);
-    flex: 3 1 600px; /* prend 3 parts, min 600px */
+    flex: 3 1 600px; 
     border-radius: 15px;
     padding: 20px;
     box-sizing: border-box;

@@ -25,7 +25,7 @@
                     <ul class="acheter">
                         <li><h2 class="prix">Sous-total: <?=number_format($product->prix * $quantite, 2)?>€</h2></li>
                         <li><h2 class="prix">Frais de livraison: <span id="fraisLivraison"><?= isset($fraisLivraison) ? number_format($fraisLivraison, 2) : '0.00' ?>€</span></h2></li>
-                        <li><h2 class="prix">Total: <span id="totalAchat"><?= isset($total) ? number_format($total, 2) : number_format($product->prix * $quantite, 2) ?>€</span></h2></li>
+                        <li><h2 class="prix">Total (TTC): <span id="totalAchat"><?= isset($total) ? number_format($total, 2) : number_format($product->prix * $quantite, 2) ?>€</span></h2></li>
                         <li><h2 class="prix">quantite : <?=$quantite?></h2></li>
                     </ul>
                 </li>

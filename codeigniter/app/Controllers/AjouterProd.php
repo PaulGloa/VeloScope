@@ -27,15 +27,15 @@ class AjouterProd extends BaseController
 
         $dbProductModel = new DbProductModel();
 
-        if ($nom === "" || $prix === "" || $stock === "" || $desc === "" || $categorie === "") {
+        if ($nom === "" || $prix === "" || $stock === "" || $desc === "" || $categorie === "" || !($this->request->getFile('image')) || !($this->request->getFile('image')->isValid())) {
 
             session()->set('nom_produit', $nom);
             session()->set('prix', $prix);
             session()->set('stock', $stock);
             session()->set('categorie', $categorie);
             session()->set('desc', $desc);
-
-            return redirect()->to(base_url('AjouterProd/index/ajout_incomplet')); // ici modif
+                
+            return redirect()->to(base_url('AjouterProd/index/ajout_incomplet'));
         }
 
         session()->remove(['nom_produit', 'prix', 'stock','categorie', 'desc']);

@@ -6,6 +6,6 @@ class VeloVille extends ProductEntity
 {
     public function caractéristiques() : string
     {
-        return "Porte-bagages arrière, panier avant, pneus lisses.";
+        return "Porte-bagages arrière, panier avant, pneus lisses. ";
     }
 }

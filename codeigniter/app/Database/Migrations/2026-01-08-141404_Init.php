@@ -93,6 +93,10 @@ class Init extends Migration
                 'type'       => 'INT',
                 'constraint' => 9,
             ],
+            'etat' => [
+                'type'       => 'VARCHAR',
+                'constraint' => '20'    
+            ]
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->createTable('commandes');

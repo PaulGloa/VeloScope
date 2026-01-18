@@ -11,17 +11,23 @@
     padding: 10px;
     font-size: 16px;
     color: white;
-    background-color: var(--dark-mid-bg);
+    background-color: var(--dark-low-primary);
     border: 2px solid var(--dark-border);
+    transition: background-color 1s ease;
 }
-
+.profil:hover{
+    cursor: pointer;
+    background-color: var(--primary);
+}
 .profil-container {
     position: relative;
     display: inline-block;
+    margin-right: 50px;
 }
 
 /* MENU */
 .options {
+    margin-left: 0;
     margin-top: -100px;
     height: 400px;
     display: none;
@@ -205,3 +211,9 @@
     background-color: var(--primary);
 }
 
+@media screen and (max-width: 900px) {
+    .profil-container{
+        margin-right: 0;
+    }
+    
+}

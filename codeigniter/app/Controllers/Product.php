@@ -9,18 +9,21 @@ use App\Libraries\Shipping\LivraisonStandard;
 use App\Libraries\Shipping\LivraisonExpress;
 use App\Libraries\Shipping\LivraisonPointRelais;
 use App\Libraries\Pricing\VeloSimple;
-use App\Libraries\Pricing\OptionGravage;
+use App\Libraries\Pricing\OptionGardeBoue;
 use App\Libraries\Pricing\OptionAssurance;
 use App\Libraries\Pricing\OptionLivraisonMontee;
+use App\Models\DbUserModel;
 
 class Product extends BaseController {
     public function index($id) {
 
         $productModel = new DbProductModel();
+        $dbUser = new DbUserModel();
 
         $data['categories'] = $productModel->getCategories();
         $data['data'] = $productModel->findAll();
         $data['product'] = $productModel->find($id);
+        $data['vendeur'] = $dbUser->where('id', $data['product']->vendeur)->first();
         session()->set("currentProductId", $id);
 
         return view("product_view.php", $data);
@@ -41,6 +44,7 @@ class Product extends BaseController {
         $commande->produit = $id;
         $commande->client = session()->get("id");
         $commande->quantite = $this->request->getPost("quantite") ?? 1;
+        $commande->etat = 'en cours';
 
         session()->set('current_commande', $commande);
 
@@ -78,13 +82,16 @@ class Product extends BaseController {
 
         $mode = $this->request->getPost('mode_livraison') ?? 'standard';
         $context = new ShippingContext(new LivraisonStandard());
+
         if ($mode === 'express') {
             $context->setStrategie(new LivraisonExpress());
         } elseif ($mode === 'point_relais') {
             $context->setStrategie(new LivraisonPointRelais());
         }
+
         $fraisLivraison = $context->calculerFrais($product, (int) $commande->quantite);
         $velo = new VeloSimple($product);
+
         if ($this->request->getPost('gardeboue')) {
             $velo = new OptionGardeBoue($velo);
         }
@@ -94,8 +101,10 @@ class Product extends BaseController {
         if ($this->request->getPost('livraison_montee')) {
             $velo = new OptionLivraisonMontee($velo);
         }
+
         $prixUnitaire = $velo->getPrix();
         $total = ($prixUnitaire * (int)$commande->quantite) + $fraisLivraison;
+        
         session()->setFlashdata('frais_livraison', $fraisLivraison);
         session()->setFlashdata('total_commande', $total);
 

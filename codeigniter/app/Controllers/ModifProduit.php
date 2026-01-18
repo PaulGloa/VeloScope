@@ -12,6 +12,7 @@ class ModifProduit extends BaseController
         $productModel = new DbProductModel();
         $data['data'] = $productModel->findAll();
         $data['product'] = $productModel->find($id);
+        $data['categories'] = $productModel->getCategories();
 
         session()->set('nom_produit', $data['product']->nom);
         session()->set('prix', $data['product']->prix);

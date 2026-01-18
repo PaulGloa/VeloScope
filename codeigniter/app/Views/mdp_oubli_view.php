@@ -13,7 +13,7 @@
 <body>
     <div class="connexion-card">
         <div class="duo">
-            <img src="<?php echo base_url('assets/img/logo.jpg') ?>" class="logo">
+            <a href="/"><img src="<?php echo base_url('assets/img/logo.jpg') ?>" class="logo"></a>
             <h2 class="title">Mot de passe oublié</h2>
         </div>
         <p class="str-type1">Adresse mail :</p>

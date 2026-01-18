@@ -12,95 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-       <nav class="navbar">
-            <div class="box1_header">
-                <a href="/">
-                    <img class="logo" src="<?php echo base_url('assets/img/logo.jpg');?>">
-                </a>
-                <div class="display-categories">
-                    <form action="<?php echo base_url('Home/recherche'); ?>" method="post">
-                        <input type="submit" id="submit-button" style="display: none;">
-                    </form>
-                </div>
-                <form id="search-form" action="<?php echo base_url('Home/recherche'); ?>" method="post">
-                    <?php if (session()->get('keyword') != NULL) :?>
-                        <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" value="<?=session()->get('keyword')?>">
-                    <?php else :?>
-                        <input class="searchbar" type="search" name="keyword" placeholder="Rechercher" >
-                    <?php endif; ?>
-                </form>    
-
-                <div class="bouttons">
-                    <?php if (session()->get('nom') == null) :?>
-                        <a href="<?php echo base_url('Inscription'); ?>"><button class="btn-type-1-inscription">Inscription</button></a>
-                        <a href="<?php echo base_url('Connexion'); ?>"><button class="btn-type-1">Connexion</button></a>
-                    <?php elseif (session()->get('role') == 'client') : ?>
-                        <div class="profil-container">
-                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </button>
-                            <div id="options" class="options">
-                                <h2><i class="fa-solid fa-user"></i> Mon Profil</h2>
-                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
-                                <p class="pline">____________________________</p>
-                                <a href="<?php echo base_url('ModifInfos'); ?>"><button class="line-red"><i class="fa-solid fa-user-gear"></i> Modifier des Informations</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-red"><i class="fa-solid fa-cart-shopping"></i> Mes Commandes</button>
-                                <p class="pline">____________________________</p>
-                                <form action="<?= base_url('Dashboard/devenirVendeur')?>" method="post">
-                                    <button class="line-red"><i class="fa-solid fa-user-tie"></i> Devenir vendeur</button>
-                                </form>
-                                    <p class="pline">____________________________</p>
-                                <button class="line-bas-red"><i class="fa-solid fa-user-xmark"></i> Se déconnecter</button>
-                                <button class="line-bas-red"><i class="fa-solid fa-trash-can"></i> Supprimer son profil</button>
-                                <p class="pline">____________________________</p>
-                            </div>
-                        </div>
-                        <a href="<?= base_url('Connexion/deconnexion') ?>"><button class="btn-type-1">Deconnexion</button></a>
-                   <?php elseif (session()->get('role') == 'vendeur') : ?>
-                        <div class="profil-container">
-                            <a><button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </button></a>
-                            <div id="options" class="options-vendeur">
-                                <h2><i class="fa-solid fa-user"></i> Mon Profil</h2>
-                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
-                                <p class="pline">____________________________</p>
-                                <a href="<?php echo base_url('ModifInfos'); ?>"><button class="line-red"><i class="fa-solid fa-user-gear"></i> Modifier des Informations</button></a>
-                                <p class="pline">____________________________</p>
-                                <a href="<?php echo base_url('MesCommandes'); ?>"><button class="line-red"><i class="fa-solid fa-cart-shopping"></i> Mes Commandes</button></a>
-                                <a href="<?php echo base_url('MesVentes'); ?>"><button class="line-red"><i class="fa-solid fa-cart-arrow-down"></i> Mes Ventes</button></a>
-                                <button class="line-red"><i class="fa-solid fa-shop"></i> Mon Magasin</button>
-                                <a href="<?= base_url('AjouterProd') ?>"><button class="line-red"><i class="fa-solid fa-circle-plus"></i> Ajouter produits</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-bas-red"><i class="fa-solid fa-user-xmark"></i> Se déconnecter</button>
-                                <button class="line-bas-red"><i class="fa-solid fa-trash-can"></i> Supprimer son profil</button>
-                                <p class="pline">____________________________</p>
-                            </div>
-                        </div>
-                        <a href="<?= base_url('Connexion/deconnexion') ?>"><button class="btn-type-1">Deconnexion</button></a>
-                   <?php elseif (session()->get('role') == 'moderateur') : ?>
-                        <div class="profil-container">
-                            <button id="profil" class="profil" >Bonjour <?=session()->get('prenom')?> </a></button>
-                            <div id="options" class="options-modo">
-                                <h2><i class="fa-solid fa-user"></i> Mon Profil</h2>
-                                <h4>Connecté en tant que : <?=session()->get('prenom')?> <?=session()->get('nom')?></h4>
-                                <p class="pline">____________________________</p>
-                                <a href="<?= base_url('ModifInfos') ?>"><button class="line-red"><i class="fa-solid fa-user-gear"></i> Modifier des Informations</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-red"><i class="fa-solid fa-cart-shopping"></i> Mes Commandes</button>
-                                <button class="line-red"><i class="fa-solid fa-scroll"></i> Consulter les commandes</button>
-                                <a href="<?= base_url('Connexion') ?>"><button class="line-red"><i class="fa-solid fa-book-open"></i> Consulter les produits</button></a>
-                                <a href="<?= base_url('Connexion') ?>"><button class="line-red"><i class="fa-solid fa-circle-plus"></i> Ajouter produits</button></a>
-                                <p class="pline">____________________________</p>
-                                <button class="line-red"><i class="fa-solid fa-users"></i> Consulter liste users</button>
-                                <p class="pline">____________________________</p>
-                                <button class="line-bas-red"><i class="fa-solid fa-user-xmark"></i> Se déconnecter</button>
-                                <button class="line-bas-red"><i class="fa-solid fa-trash-can"></i> Supprimer son profil</button>
-                                <p class="pline">____________________________</p>
-                            </div>
-                        </div>
-                        <a href="<?= base_url('Connexion/deconnexion') ?>"><button class="btn-type-1">Deconnexion</button></a>
-                    <?php endif;?>
-                </div>
-            </div>
-    </nav>
+    <?php require_once('navbar.php'); ?>
     <div class="main-content">
         <div class="sommaire-box">
             <h2 class="sommaire-title">Sommaire</h2>
@@ -211,7 +123,7 @@
                     <p>Capital social : 20 000 €</p>
                     <p>Siège social : 3 rue Maréchal Joffre, 44000, France</p>
                     <p>Téléphone : 06 70 85 74 77</p>
-                    <p>Email : contact@veloscope.fr A CHANGER</p>
+                    <p>Email : contact@veloscope.fr</p>
                 </li>
                 <li><h3 id="9">Immatriculation</h3>
                     <p>SIRET : 987 654 321 00000</p>
