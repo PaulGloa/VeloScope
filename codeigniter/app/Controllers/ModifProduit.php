@@ -28,14 +28,14 @@ class ModifProduit extends BaseController
     {
         $productModel = new DbProductModel();
 
-        $id = $_POST['id'];
-        $nom = $_POST['nom'];
-        $prix = $_POST['prix'];
-        $stock = $_POST['stock'];
-        $categorie = $_POST['categorie'];
-        $desc = $_POST['desc'];
-
         $product = $productModel->find($id);
+        
+        $id = $_POST['id'];
+        $product->nom = $_POST['nom'];
+        $product->prix = $_POST['prix'];
+        $product->stock = $_POST['stock'];
+        $product->categorie = $_POST['categorie'];
+        $product->desc = $_POST['desc'];
 
         try {
             $productModel->update($id, $product);
@@ -74,7 +74,7 @@ class ModifProduit extends BaseController
             imagedestroy($src);
         }
 
-        return redirect()->to(base_url('public/MonMagasin'));
+        return redirect()->to(base_url('MonMagasin'));
     }
 }
 
